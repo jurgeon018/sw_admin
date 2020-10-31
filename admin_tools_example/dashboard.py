@@ -139,7 +139,7 @@ class CustomIndexDashboard(Dashboard):
                 children=[
                     modules.AppList(
                         title="Shop",
-                        models=['box.apps.sw_shop.sw_catalog.models.Item',]
+                        models=['sw_shop.sw_catalog.models.Item',]
                     ),
                     modules.AppList(
                         title="Apps",
@@ -177,7 +177,7 @@ class CustomIndexDashboard(Dashboard):
             ),
             modules.RecentActions(
                 title='Django CMS recent actions',
-                include_list=('box.page', 'box.apps.sw_admin',)
+                include_list=('box.page', 'sw_admin',)
             ),
         ]
         return children

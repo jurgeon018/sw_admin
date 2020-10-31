@@ -28,30 +28,31 @@ class CustomIndexDashboard(DefaultIndexDashboard):
     def init_with_context(self, context):
         # self.columns  = self.get_columns(context)
         site_name = get_admin_site_name(context)
-        if "box.apps.sw_shop" in settings.INSTALLED_APPS:
+        if "sw_shop" in settings.INSTALLED_APPS:
             self.children.append(modules.AppList(
                 _('Магазин'),
-                models=('box.apps.sw_shop.*',),
+                models=('sw_shop.*',),
             ))
-        if "box.apps.sw_dev" in settings.INSTALLED_APPS:
+        if "sw_dev" in settings.INSTALLED_APPS:
             self.children.append(modules.AppList(
                 _('Розробка'),
-                models=('box.apps.sw_dev.*',),
+                models=('sw_dev.*',),
             ))
-        if "box.apps.sw_blog" in settings.INSTALLED_APPS:
+        if "sw_blog" in settings.INSTALLED_APPS:
             self.children.append(modules.AppList(
                 _('Блог'),
-                models=('box.apps.sw_blog.*',),
+                models=('sw_blog.*',),
             ))
-        if "box.apps.sw_payment" in settings.INSTALLED_APPS:
+        if "sw_payment" in settings.INSTALLED_APPS:
             self.children.append(modules.AppList(
                 _("Оплати"),
-                models=('box.apps.sw_payment.*',),
+                models=('*',),
             ))
-        if 'box.apps.sw_delivery' in settings.INSTALLED_APPS:
+        if 'sw_novaposhta' in settings.INSTALLED_APPS:
             self.children.append(modules.AppList(
                 _("Доставки"),
-                models=('box.apps.sw_delivery.*',),
+                models=('sw_novaposhta',),
+                # models=('sw_novaposhta.*',),
             ))
 
         self.children.append(modules.LinkList(
@@ -81,27 +82,27 @@ class CustomIndexDashboard(DefaultIndexDashboard):
             ),
         ))
 
-        # TODO: циклом зробити так шоб кожну аппку з box.core.* в адмінці можна було перетягувати
+        # TODO: циклом зробити так шоб кожну аппку з .* в адмінці можна було перетягувати
         # і приховувати. Підсказка: django.apps.apps.get_model + django.conf.INTSALLED_APPS
 
         self.children.append(modules.AppList(
             _("Налаштування"),
-            models=('box.core.*',),
+            models=('sw_utils.*',),
             exclude=(
-                'box.core.sw_contact_form.*',
-                'box.core.sw_content.*',
+                'sw_utils.sw_contact_form.*',
+                'sw_utils.sw_content.*',
             ),
         ))
         
         self.children.append(modules.AppList(
             _("Зворотній звязок"),
-            models=('box.core.sw_contact_form.*',),
+            models=('sw_utils.sw_contact_form.*',),
         ))
 
 
         self.children.append(modules.AppList(
             _("Контент"),
-            models=('box.core.sw_content.*',),
+            models=('sw_utils.sw_content.*',),
         ))
 
 
@@ -110,10 +111,10 @@ class CustomIndexDashboard(DefaultIndexDashboard):
         #     models=('box.*'),
         #     exclude=(
         #         'django.contrib.*',
-        #         'box.core.*',
-        #         'box.apps.sw_shop.*',
-        #         'box.apps.sw_blog.*',
-        #         'box.apps.sw_payment.*',
+        #         'sw_utils.*',
+        #         'sw_shop.*',
+        #         'sw_blog.*',
+        #         '*',
         #     )
         # )),
 

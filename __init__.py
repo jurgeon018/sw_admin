@@ -1,1 +1,1 @@
-default_app_config = 'box.apps.sw_admin.apps.CustomAdminConfig'
+default_app_config = 'sw_admin.apps.CustomAdminConfig'
